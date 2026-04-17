@@ -1,0 +1,52 @@
+{% extends 'shop/base.html' %}
+{% block title %}{{  product.title }} | DiShop{% endblock %}
+
+{% block content %}
+<div class="product-detail-container">
+    <h1>{{ product.title }}</h1>
+    
+    <p><b>Санаты:</b> 
+        <a href="{% url 'katalog_sanat' product.category.id %}">
+            {{ product.category.name }}
+        </a>
+    </p>
+    
+    <p class="product-price">
+        {{ product.price }} ₸
+    </p>
+    
+    <p><b>Күйі:</b> 
+        {% if product.is_available %} 
+            <span class="status-badge status-available">Қолжетімді</span>
+        {% else %} 
+            <span class="status-badge status-unavailable">Уақытша қолжетімсіз</span>
+        {% endif %}
+    </p>
+    
+    <br>
+    <a href="{% url 'katalog' %}" class="back-link">← Каталогқа қайту</a>
+</div>
+
+<h2 class="section-title">Тұтынушылардың пікірлері</h2>
+
+<div class="reviews-section">
+    {% if reviews %}
+        {% for review in reviews %}
+        <div class="review-card">
+            <div class="review-header">
+                <b>👤 {{ review.author }}</b> 
+                <span class="rating-stars">⭐ {{ review.rating }}/5</span>
+            </div>
+            <p class="review-text">"{{ review.text }}"</p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-reviews-msg">Әзірге пікірлер жоқ, бірінші болып пікір қалдырыңыз!</p>
+    {% endif %}
+    <div style="margin-bottom: 20px;">
+    <a href="{% url 'pikir_qaldyru' product.id %}" class="btn-more" >
+        ✍️ Жаңа пікір қалдыру
+    </a>
+</div>
+</div>
+{% endblock %}

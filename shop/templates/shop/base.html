@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <title>DiShop</title>
+    <link rel="stylesheet" href="{% static 'shop/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <a href="{% url 'basty_bet' %}" class="logo">🛒 DiShop</a>
+            <nav>
+                <a href="{% url 'basty_bet' %}">Басты бет</a>
+                <a href="{% url 'katalog' %}">Каталог</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'sanat_qosu' %}" >Санат қосу</a>
+                    <a href="{% url 'tauar_qosu' %}" >Тауар қосу</a>
+                    <a href="{% url 'logout' %}">Шығу</a>
+                {% else %}
+                <a href="{% url 'login' %}">Кіру</a>
+                <a href="{% url 'register' %}">Тіркелу</a>
+                {% endif %}
+                
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <footer>
+        <p>© 2026 DiShop — Кенжебек Динара</p>
+    </footer>
+</body>
+</html>

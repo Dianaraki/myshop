@@ -1,0 +1,18 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}{{ title }} | DiShop{% endblock %}
+
+{% block content %}
+<div class="product-detail-container" >
+    <h1>{{ title }}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-more" >
+            Сақтау
+        </button>
+    </form>
+    <br>
+    <a href="{% url 'katalog' %}" class="back-link">← Артқа қайту</a>
+</div>
+{% endblock %}

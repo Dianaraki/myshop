@@ -1,0 +1,24 @@
+{% extends 'shop/base.html' %}
+{% block title %}Басты бет | DiShop{% endblock %}
+
+{% block content %}
+<div class="catalog-header" style="text-align: center; margin-bottom: 30px;">
+    <h1>Тауар санаттары</h1>
+</div>
+
+<div class="category-list">
+    {% for category in sanatter %}
+        <a href="{% url 'katalog_sanat' category.id %}" >
+            <div class="category-card">
+                <h3>
+                    {{ category.name }}
+                </h3>
+                
+                
+                
+                <span class="btn-more" >📦 Көру</span>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+{% endblock %}

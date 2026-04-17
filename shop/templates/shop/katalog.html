@@ -1,0 +1,50 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Каталог | DiShop{% endblock %}
+
+{% block content %}
+<div class="catalog-header">
+    <h1>
+        {% if sanat %}
+            <span class="active-category-title">{{  sanat.name }}</span> бөлімі
+        {% else %}
+            Барлық тауарлар
+        {% endif %}
+    </h1>
+
+    <div class="filter-bar">
+        <a href="{% url 'katalog' %}" class="filter-item {% if not sanat %}active{% endif %}">Барлығы</a>
+        
+        {% for s in sanatter %}
+            <a href="{% url 'katalog_sanat' s.id %}" 
+               class="filter-item {% if sanat.id == s.id %}active{% endif %}">
+               {{ s.name }}
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+{% if tauarlar %}
+    <div class="products-grid">
+        {% for tauar in tauarlar %}
+            <div class="product-card">
+                <div class="product-info">
+                <h3>{{  tauar.title }}</h3>
+
+
+                <div class="price-container">
+                    <b class="product-price">{{ tauar.price }} ₸</b>
+                </div>
+
+                <a href="{% url 'tauar_detail' tauar.id %}" class="btn-more">Толығырақ →</a>
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+{% else %}
+    <div class="no-products">
+        <p>Бұл бөлімде әзірге тауар жоқ. </p>
+        <a href="{% url 'katalog' %}">Каталогқа қайту</a>
+    </div>
+{% endif %}
+{% endblock %}
