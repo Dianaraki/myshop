@@ -4,6 +4,10 @@ from .forms import CategoryForm, ProductForm, ReviewForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from django.conf import settings
+import os
+
 
 def basty_bet(request):
     sanatter = Category.objects.all()
@@ -95,3 +99,12 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('basty_bet')
+
+def lab15_status(request):
+    context = {
+        'debug_status': settings.DEBUG,
+        'allowed_hosts': settings.ALLOWED_HOSTS,
+        'static_root': settings.STATIC_ROOT,
+        'secret_key_loaded': bool(settings.SECRET_KEY)
+    }
+    return render(request, 'shop/lab15.html', context)

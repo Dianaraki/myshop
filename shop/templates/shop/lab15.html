@@ -1,0 +1,13 @@
+
+    <h1>Lab 15 жұмыс істеп тұр!</h1>
+
+    <p><b>DEBUG:</b> {{ debug_status }}</p>
+
+    <p><b>ALLOWED_HOSTS:</b> {{ allowed_hosts }}</p>
+
+    <p><b>STATIC_ROOT:</b> {{ static_root }}</p>
+
+    <p>
+        <b>.env файлынан SECRET_KEY жүктелді:</b> 
+        {% if secret_key_loaded %} ✅ {% else %} ❌ {% endif %}
+    </p>
